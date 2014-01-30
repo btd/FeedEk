@@ -17,14 +17,14 @@
             DateFormatLang:"en"
         }, opt);
 
-        var id = $(this).attr("id"), i, s = "",dt;
-        $("#" + id).empty().append('<img src="loader.gif" />');
+        var $this = $(this), i, s = "",dt;
+        $this.empty().append('<img src="loader.gif" />');
 
         $.ajax({
-            url: "http://ajax.googleapis.com/ajax/services/feed/load?v=1.0&num=" + def.MaxCount + "&output=json&q=" + encodeURIComponent(def.FeedUrl) + "&hl=en&callback=?",
+            url: "//ajax.googleapis.com/ajax/services/feed/load?v=1.0&num=" + def.MaxCount + "&output=json&q=" + encodeURIComponent(def.FeedUrl) + "&hl=en&callback=?",
             dataType: "json",
             success: function (data) {
-                $("#" + id).empty();
+                $this.empty();
                 $.each(data.responseData.feed.entries, function (e, item) {
                     s += '<li><div class="itemTitle"><a href="' + item.link + '" target="' + def.TitleLinkTarget + '" >' + item.title + "</a></div>";
                     
@@ -49,8 +49,9 @@
                             s += '<div class="itemContent">' + item.content + "</div>";
                         }
                     }
+                    s += '</li>';
                 });
-                $("#" + id).append('<ul class="feedEkList">' + s + "</ul>");
+                $this.append('<ul class="feedEkList">' + s + "</ul>");
             }
         });
     };
