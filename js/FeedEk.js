@@ -11,6 +11,7 @@
             MaxCount: 5,
             ShowDesc: true,
             ShowPubDate: true,
+            ShowSnippet: false,
             CharacterLimit: 0,
             TitleLinkTarget: "_blank",
             DateFormat: "",
@@ -48,6 +49,9 @@
                         else {
                             s += '<div class="itemContent">' + item.content + "</div>";
                         }
+                    }
+                    if (def.ShowSnippet) {
+                        s += '<div class="itemContent">' + item.contentSnippet + "</div>";
                     }
                     s += '</li>';
                 });
